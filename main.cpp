@@ -1,7 +1,8 @@
-﻿#pragma once
+#pragma once
 #include <iostream>
 #include <string>
 #include <fstream>
+#include <typeinfo>
 
 using namespace std;
 
@@ -32,15 +33,34 @@ void example01() {
 		pos = data.find(findStr, pos + replaceStr.length());
 	}
 
-	
+
 	cout << data << endl;
+}
+void example02() {
+	int num[2][3]{ 10,20,30 };
+	int (&rnum)[2][3] = num; 
+	int (&rnum2)[3] = num[0]; //배열에 대한 레퍼런스 선언방법
+
+
+	cout << "num : " << typeid(num).name() << endl; //num : int [2][3]
+	cout << "num[0] : " << typeid(num[0]).name() << endl; //num[0] : int [3]
+	cout << "num[0][0] : " << typeid(num[0][0]).name() << endl; //yhnum[0][0] : int
+}
+
+void example03() {
+	constexpr int SIZE = 5;
+	constexpr char TAB = '\t';
+	int arr1[SIZE] = { 10,20,30,40,50 };
+	cout << arr1 << TAB << arr1[1] << endl;
+	cout << "SIZE : " << size(arr1) << endl;
+	cout << arr1[0] << TAB << arr1[1] << endl;
+	cout << *(arr1) << TAB << *(arr1 + 1) << endl;
 }
 
 
-
 int main() {
-
-	example01();
+	cout << "202211284 김준수"<<endl;
+	example03();
 
 	return 0;
 }
